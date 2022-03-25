@@ -1,28 +1,37 @@
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
-public class Deposit {
+public class Deposit{
     private double amountD;
-    private Date date;
     private String account;
+    private Date date;
 
-    Deposit(double amountD, Date date, String account){
+    Deposit(double amountD, String account, Date date){
         this.amountD = amountD;
-        this.date = date;
         this.account = account;
+        this.date = date;
     }
+
     public double getAmount(){
-        System.out.println("Please enter an amount to deposit: ");
+        System.out.println(Main.line.repeat(10));
+        System.out.println("Please enter amount to deposit: ");
         Scanner scan = new Scanner(System.in);
-        double input = scan.nextDouble();
-        this.amountD = input;
+        if(scan.hasNextDouble()){
+            double input = scan.nextDouble();
+            this.amountD = input;
+        }
+        else{
+            System.out.println("Not a number value, please try again.");
+            getAmount();
+        }
         return amountD;
     }
     public double setAmount(double amountD){
         this.amountD = amountD;
         return amountD;
     }
+
     public Date getDate(){
         this.date = new Date();
         return date;
@@ -31,8 +40,10 @@ public class Deposit {
         this.date = date;
         return date;
     }
+
     public String getAccount(ArrayList<Double> checking, ArrayList<Double> savings){
-        System.out.println("Please select which account you would like to deposit to: ");
+        System.out.println(Main.line.repeat(10));
+        System.out.println("Which account do you want to deposit to?: ");
         System.out.println("\"CHECKING\", or \"SAVINGS\".");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
@@ -58,4 +69,4 @@ public class Deposit {
         return "";
     }
 
-}
+        }
